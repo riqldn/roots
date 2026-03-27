@@ -15,3 +15,17 @@ export async function getWorks() {
     return res.items
 }
 
+export async function getCountries() {
+    const res = await client.getEntries({
+        content_type: 'countries',
+    })
+    return res.items
+}
+
+export async function getSectors() {
+    const res = await client.getEntries({
+        content_type: 'sectors',
+    })
+    return res.items
+}
+

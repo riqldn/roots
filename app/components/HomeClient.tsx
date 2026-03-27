@@ -8,9 +8,11 @@ import WestAfricaMap from "./WestAfricaMap"
 import Button from "./Button"
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'motion/react'
+import Foot from "./Foot"
 
-export default function HomeClient({ works }: { works: any[] }) {
-    console.log(works)
+
+export default function HomeClient({ sectors, works, countries }: { sectors: any[], works: any[], countries: any[] }) {
+    console.log(sectors)
     const audiences = [
         {
             num: "01",
@@ -120,6 +122,7 @@ export default function HomeClient({ works }: { works: any[] }) {
                 </div>
             </section>
 
+            {/* What we do */}
             <section className="border-y-1 border-white/10 py-16 min-h-max w-full overflow-x-hidden">
                 <div className="w-9/10 min-h-max mx-auto">
                     <div className="flex justify-between md:flex-row flex-col w-full">
@@ -133,6 +136,7 @@ export default function HomeClient({ works }: { works: any[] }) {
                 </div>
             </section>
 
+            {/* Who we serve */}
             <section className="border-y-1 border-white/10 py-16 min-h-max w-full overflow-x-hidden">
                 <div className="w-9/10 flex flex-col gap-32 justify-between min-h-max mx-auto">
                     <div className="flex justify-between md:flex-row flex-col w-full">
@@ -147,7 +151,7 @@ export default function HomeClient({ works }: { works: any[] }) {
                         initial="initial"
                         viewport={{ once: true, amount: "some" }}
                         whileInView="inView"
-                        className="md:grid grid-cols-2 divide-x divide-y divide-white/[0.04]"
+                        className="md:grid grid-cols-2 divide-x md:divide-y divide-white/[0.04]"
                     >
                         {audiences.map((item, i) => (
                             <motion.div
@@ -165,6 +169,7 @@ export default function HomeClient({ works }: { works: any[] }) {
                 </div>
             </section>
 
+            {/* Why Us */}
             <section className="border-y-1 border-white/10 py-16 min-h-max w-full overflow-x-hidden">
                 <div className="w-9/10 flex flex-col gap-12 md:gap-32 justify-between min-h-max mx-auto">
                     <div className="flex justify-between md:flex-row flex-col w-full">
@@ -208,7 +213,7 @@ export default function HomeClient({ works }: { works: any[] }) {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                         {works.map((work: any) => {
 
-                            console.log('categories:', JSON.stringify(work.fields.category, null, 2))
+                            // console.log('categories:', JSON.stringify(work.fields.category, null, 2))
                             const imageUrl = work.fields.thumbnail?.fields?.file?.url
                                 ? `https:${work.fields.thumbnail.fields.file.url}`
                                 : null
@@ -216,27 +221,30 @@ export default function HomeClient({ works }: { works: any[] }) {
                             const categories = work.fields.category || []
 
                             return (
-                                <div
-                                    key={work.sys.id}
-                                    className="relative rounded-lg overflow-hidden cursor-pointer group h-[350px]"
-                                >
-                                    {/* Background image */}
-                                    {imageUrl ? (
-                                        <Image
-                                            src={imageUrl}
-                                            alt={work.fields.title}
-                                            fill
-                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                    ) : (
-                                        <div className="absolute inset-0 bg-gradient-to-br from-[#1a1420] to-[#2d1f3d]" />
-                                    )}
+                                <div>
+                                    <div
+                                        key={work.sys.id}
+                                        className="relative rounded-lg overflow-hidden cursor-pointer group h-[350px]"
+                                    >
+                                        {/* Background image */}
+                                        {imageUrl ? (
+                                            <Image
+                                                src={imageUrl}
+                                                alt={work.fields.title}
+                                                fill
+                                                className="aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <div className="absolute top-0 bg-gradient-to-br from-[#1a1420] to-[#2d1f3d]" />
+                                        )}
 
-                                    {/* Dark gradient overlay — stronger at bottom */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                                        {/* Dark gradient overlay — stronger at bottom */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                                    {/* Content sits on top of overlay */}
-                                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                                        {/* Content sits on top of overlay */}
+
+                                    </div>
+                                    <div key={work.sys.id * 5} className="relative py-4">
                                         {/* Category pills */}
                                         {Array.isArray(categories) && categories.length > 0 && (
                                             <div className="flex flex-wrap gap-2 mb-3">
@@ -269,6 +277,70 @@ export default function HomeClient({ works }: { works: any[] }) {
                     </div>
                 </div>
             </section>
+
+            {/* Our Focus */}
+            <section className="border-y-1 border-white/10 py-16 min-h-max w-full overflow-x-hidden">
+                <div className="w-9/10 flex flex-col gap-12 md:gap-32 justify-between min-h-max mx-auto">
+                    <div className="flex justify-between md:flex-row flex-col w-full">
+                        <h2 className="text-lg md:text-xl font-bold tracking-xtra md:w-1/2">
+                            <StaggerText>Our Focus</StaggerText>
+                        </h2>
+                        <div className="w-full lg:mt-0 md:mt-2 md:w-[60%] lg:w-[43%] flex-col flex gap-16">
+
+                            <div className="flex flex-col md:flex-row gap-8 items-start" >
+                                <span className="text-smd self-start font-bold">Countries</span>
+                                <div className="flex gap-y-2 mt-2 items-center gap-1 flex-row flex-wrap">
+                                    {countries.map((country: any) => {
+
+                                        return (<span className={country.fields.highlight ? " font-medium mr-2 max-h-max max-w-max flex justify-center text-primary items-center text-nowrap  px-3 rounded-3xl border-primary border-1" : "font-medium mr-1 max-h-max max-w-max flex justify-center text-white/50 items-center text-nowrap  px-3 rounded-3xl border-white/50 border-1"}>
+                                            {country.fields.name}
+                                        </span>)
+                                    })}
+                                </div>
+
+                            </div>
+
+                            <div className="flex flex-col md:flex-row gap-8 items-start" >
+                                <span className="text-smd self-start font-bold">Sectors</span>
+                                <div className="flex gap-y-2 mt-2 items-center gap-1 flex-row flex-wrap">
+                                    {sectors.map((sector: any) => {
+
+                                        return (<span className={sector.fields.highlight ? " font-medium mr-2 max-h-max max-w-max flex justify-center text-primary items-center text-nowrap  px-3 rounded-3xl border-primary border-1" : "font-medium mr-1 max-h-max max-w-max flex justify-center text-white/50 items-center text-nowrap  px-3 rounded-3xl border-white/50 border-1"}>
+                                            {sector.fields.sector}
+                                        </span>)
+                                    })}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+            <section className="border-y-1 border-white/10 py-16 min-h-max w-full overflow-x-hidden">
+                <div className="w-9/10 min-h-max mx-auto">
+                    <div className="flex justify-between flex-col md:gap-0 gap-8 md:flex-row">
+
+                        <div className="w-full md:w-[60%] flex justify-between flex-col">
+                            <h2 className="text-xl md:text-3xl leading-tight md:text-xl font-bold tracking-xtra ">
+                                <StaggerText>Ready to navigate with confidence?</StaggerText>
+                            </h2>
+                            <p className="text-left max-w-[25ch] text-white/70 text-base leading-reg md:max-w-[45ch] md:w-1/2 lg:max-w-[50ch]">
+                                Get in touch and tell us what you&apos;re working on.
+                            </p>
+                        </div>
+
+                        <div className="self-start md:self-center">
+                            <Button isLight={true} cta="Get in touch" />
+                            <span className="text-sm text-white/50">info@riserootsgroup.com</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <Foot/>
         </>
     )
 }
