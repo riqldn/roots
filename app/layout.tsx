@@ -1,0 +1,34 @@
+import type { Metadata } from "next";
+import "./globals.css";
+import localFont from "next/font/local"
+import LenisProvider from "./components/lenis-provider";
+
+const instrument = localFont({
+  src: '../fonts/InstrumentSans.woff2',
+  variable: "--font-instrument",
+  weight: "100 600"
+})
+
+export const metadata: Metadata = {
+  title: "Roots Policy Consulting",
+  description: "A specialist political-risk and policy-analysis consultancy delivering actionable intelligence across West Africa’s most complex markets.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${instrument.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        <LenisProvider>
+          {children}
+        </LenisProvider>
+      </body>
+    </html>
+  );
+}

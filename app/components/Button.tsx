@@ -1,0 +1,23 @@
+import React from 'react';
+import { motion } from "motion/react";
+import Link from 'next/link';
+
+export default function Button({isLight, cta}:{isLight:boolean, cta:string}) {
+    const ARROW_PATH = "M11.8768 0.946282C11.8472 0.394793 11.3761 -0.0282566 10.8246 0.00137466L1.83759 0.484244C1.2861 0.513876 0.863053 0.984967 0.892684 1.53646C0.922315 2.08795 1.39341 2.51099 1.9449 2.48136L9.93337 2.05215L10.3626 10.0406C10.3922 10.5921 10.8633 11.0152 11.4148 10.9855C11.9663 10.9559 12.3893 10.4848 12.3597 9.93332L11.8768 0.946282ZM1.74403 12.6682L11.6223 1.66808L10.1343 0.331784L0.255974 11.3318L1.74403 12.6682Z"
+return(
+  <motion.div className='w-max' initial="initial" whileHover="hovered" transition={{ duration: 0.4, ease: "easeInOut" }}>
+    <Link className={isLight ? "flex flex-row font-medium bg-primary text-white py-2 px-4 justify-center rounded-md items-center gap-2" : "flex flex-row font-medium bg-background text-white py-2 px-4 border-1 justify-center rounded-md items-center gap-2" } href="/contact">
+      <span>{cta}</span>
+      <div className="bg-secondary flex overflow-hidden">
+        <span className="relative flex overflow-hidden w-[13px] h-[13px]">
+          {[{ initial: { y: 0 }, hovered: { y: -20 } }, { initial: { y: 20 }, hovered: { y: 0 } }].map((variants, i) => (
+            <motion.svg key={i} variants={variants} className="absolute" width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d={ARROW_PATH} fill="white" />
+            </motion.svg>
+          ))}
+        </span>
+      </div>
+    </Link>
+  </motion.div>
+)
+}
