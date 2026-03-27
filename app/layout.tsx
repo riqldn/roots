@@ -12,6 +12,11 @@ const instrument = localFont({
 export const metadata: Metadata = {
   title: "Roots Policy Consulting",
   description: "A specialist political-risk and policy-analysis consultancy delivering actionable intelligence across West Africa’s most complex markets.",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png'
+  }
 };
 
 export default function RootLayout({
