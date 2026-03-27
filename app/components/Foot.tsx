@@ -26,7 +26,7 @@ export default function Foot() {
                         <span className='font-bold text-white/50 mb-4'>Quick Links</span>
                         <div className='flex gap-2 flex-col'>
                             {FOOTER_LINKS.map((link, i) => {
-                                return (<span className='text-white/85 hover:text-white'>
+                                return (<span key={i*5} className='text-white/85 hover:text-white'>
                                     <Link key={i} href={link.href}>{link.label}
                                     </Link>
                                 </span>)

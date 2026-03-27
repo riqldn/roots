@@ -100,8 +100,8 @@ export default function HomeClient({ sectors, works, countries }: { sectors: any
                                     </StaggerText>
                                 </p>
                                 <div className="flex flex-row gap-4">
-                                    <Button isLight={true} cta="Get in touch" />
-                                    <Button isLight={false} cta="Our services" />
+                                    <Button href="/contact" isLight={true} cta="Get in touch" />
+                                    <Button href="/services" isLight={false} cta="Our services" />
                                 </div>
                             </div>
                         </div>
@@ -256,7 +256,7 @@ export default function HomeClient({ sectors, works, countries }: { sectors: any
                                                     return (
                                                         <span
                                                             key={cat.sys.id}
-                                                            className="text-[9px] tracking-widest uppercase px-2 py-1 bg-[#120C36] border border-[#6B5FE4]/30 text-primary rounded-md"
+                                                            className="text-[12px]   px-2 py-1 bg-[#120C36] text-primary rounded-xl"
                                                         >
                                                             {label}
                                                         </span>
@@ -267,7 +267,7 @@ export default function HomeClient({ sectors, works, countries }: { sectors: any
 
 
                                         {/* Title */}
-                                        <h3 className="text-[13px] font-semibold text-white leading-snug">
+                                        <h3 className="text-[16px] font-semibold text-white leading-snug">
                                             {work.fields.title}
                                         </h3>
                                     </div>
@@ -318,6 +318,7 @@ export default function HomeClient({ sectors, works, countries }: { sectors: any
                 </div>
 
             </section>
+            {/* Cta */}
             <section className="border-y-1 border-white/10 py-16 min-h-max w-full overflow-x-hidden">
                 <div className="w-9/10 min-h-max mx-auto">
                     <div className="flex justify-between flex-col md:gap-0 gap-8 md:flex-row">
@@ -332,7 +333,7 @@ export default function HomeClient({ sectors, works, countries }: { sectors: any
                         </div>
 
                         <div className="self-start md:self-center">
-                            <Button isLight={true} cta="Get in touch" />
+                            <Button href="/contact" isLight={true} cta="Get in touch" />
                             <span className="text-sm text-white/50">info@riserootsgroup.com</span>
                         </div>
                     </div>
