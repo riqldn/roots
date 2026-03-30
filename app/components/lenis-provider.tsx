@@ -1,11 +1,11 @@
 // components/LenisProvider.tsx
-'use client'
+"use client";
 
-import { useEffect, ReactNode } from 'react'
-import Lenis from 'lenis'
+import { useEffect, ReactNode } from "react";
+import Lenis from "lenis";
 
 interface LenisProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export default function LenisProvider({ children }: LenisProviderProps) {
@@ -13,19 +13,19 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    })
+    });
 
     function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf)
+    requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy()
-    }
-  }, [])
+      lenis.destroy();
+    };
+  }, []);
 
-  return <>{children}</>
+  return <>{children}</>;
 }
