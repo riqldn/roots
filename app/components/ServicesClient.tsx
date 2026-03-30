@@ -1,9 +1,19 @@
-"use client";
-import React from "react";
-import NavBar from "../components/NavBar";
-import Foot from "../components/Foot";
-import StaggerText from "../components/StaggerText";
-import Button from "../components/Button";
+"use client"
+import React from "react"
+import NavBar from "../components/NavBar"
+import Foot from "../components/Foot"
+import StaggerText from "../components/StaggerText"
+import TierButton from "./TierButton"
+import ServiceSection from "./ServiceSection"
+import { motion } from "motion/react"
+import Button from "./Button"
+
+const ProjectPackages = [
+    { tier: "Policy", pack: "Policy Research & Landscape Pack", description: "One major sector report, 1 hour debrief, regulatory mapping and competitor benchmarking " },
+    { tier: "Risk", pack: "Pre-Crisis Management Pack", description: "Risk forecasting, stakeholder matrix, crisis triggers and full response playbook" },
+    { tier: "Startup", pack: "Startup Governance Starter Pack", description: "Policy essentials, governance checklist, compliance overview and 30-day action plan" },
+    { tier: "Monitoring", pack: "Quarterly Policy Monitoring ", description: "3 briefing reports, full quarter political tracking, strategy session and early-warning risk briefing " },
+]
 
 const StrategicArray = [
     {
@@ -137,16 +147,47 @@ const GovernmentArray = [
     },
 ];
 
+const services = [
+    {
+        id: "strategic",
+        label: "Strategic Comms & Public Affairs",
+        tagline: "Your narrative, positioned with political intelligence behind it.",
+        description: "We work with organisations where understanding West Africa's political landscape is not optional — it's the difference between success and exposure.",
+        items: StrategicArray,
+    },
+    {
+        id: "policy",
+        label: "Policy Advisory",
+        tagline: "Intelligence and analysis that puts you ahead of the political and regulatory forces shaping your operations.",
+        description: "From deep policy research to pre-crisis risk assessment — we give you the clarity to act before events unfold, not after.",
+        items: PolicyArray,
+    },
+    {
+        id: "campaign",
+        label: "Campaign Management",
+        tagline: "Strategy and intelligence built to win.",
+        description: "From core message to GOTV — we build the political, communications and digital infrastructure that turns campaigning into votes.",
+        items: CampaignArray,
+    },
+    {
+        id: "government",
+        label: "Government Advisory",
+        tagline: "We work for governments — not for the investors or companies seeking access to them.",
+        description: "We help governments build the structures, narrative and international positioning they need to attract serious investment on fair terms.",
+        items: GovernmentArray,
+    },
+]
+
 export default function ServicesClient({ engagementModels }: { engagementModels: any[] }) {
     return (
         <>
             <NavBar />
+
+            {/* Hero */}
             <section className="min-h-max w-full overflow-x-hidden border-b-1 border-white/10 pb-12">
                 <div className="mx-auto min-h-max w-9/10 pt-12">
-                    {/* Hero Grid */}
                     <div className="grid-cols-12 overflow-x-hidden md:flex md:flex-col md:gap-8 lg:grid">
                         <div className="col-start-1 col-end-13 flex min-h-max flex-col justify-between gap-12 md:gap-8 lg:gap-24">
-                            {/* Hero headings and subheading */}
                             <div className="flex flex-col gap-4">
                                 <span className="text-primary font-medium">
                                     <StaggerText>Services</StaggerText>
@@ -157,14 +198,10 @@ export default function ServicesClient({ engagementModels }: { engagementModels:
                                     </StaggerText>
                                 </h1>
                             </div>
-                            {/* Hero paragraphs */}
                             <div className="flex flex-col justify-between gap-4 md:flex-row">
                                 <p className="leading-reg max-w-[30ch] lg:max-w-[45ch]">
                                     <StaggerText>
-                                        We deliver clarity across four service lines — combining
-                                        deep advisory expertise, rigorous research and strategic
-                                        foresight to help you navigate the political, regulatory and
-                                        sector-specific forces shaping West Africa.
+                                        We deliver clarity across four service lines — combining deep advisory expertise, rigorous research and strategic foresight to help you navigate the political, regulatory and sector-specific forces shaping West Africa.
                                     </StaggerText>
                                 </p>
                             </div>
@@ -173,194 +210,103 @@ export default function ServicesClient({ engagementModels }: { engagementModels:
                 </div>
             </section>
 
+            {/* Service lines — one map replaces four identical sections */}
+            {services.map((service) => (
+                <ServiceSection
+                    key={service.id}
+                    label={service.label}
+                    tagline={service.tagline}
+                    description={service.description}
+                    items={service.items}
+                />
+            ))}
+
+            {/* Engagement Models */}
             <section className="min-h-max w-full overflow-x-hidden border-y-1 border-white/10 py-16">
                 <div className="mx-auto flex min-h-max w-9/10 flex-col justify-between gap-8 md:gap-32">
                     <div className="flex w-full grid-cols-2 flex-col justify-between gap-4 md:flex-row lg:grid">
                         <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                            <StaggerText>Strategic Comms & Public Affairs</StaggerText>
+                            <StaggerText>Engagement Models</StaggerText>
                         </h2>
-                        <div className="flex flex-col gap-4">
-                            <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                                <StaggerText>
-                                    Your narrative, positioned with political intelligence behind
-                                    it.
-                                </StaggerText>
-                            </h2>
-                            <p className="leading-reg text-base text-white/70 md:w-full md:max-w-[45ch] lg:max-w-[50ch]">
-                                We work with organisations where understanding West Africa's
-                                political landscape is not optional — it&apos;s the difference
-                                between success and exposure.
-                            </p>
-                        </div>
+                        <p className="leading-reg text-base text-white/70 md:w-full md:max-w-[45ch] lg:max-w-[50ch]">
+                            We work with clients across four flexible models, from ongoing strategic partnerships to focused project engagements.
+                        </p>
                     </div>
-                    <div>
-                        {StrategicArray.map((service, i) => (
+                    <div className="no-scrollbar flex flex-wrap gap-8 overflow-x-auto border-white/10 py-4 md:flex-nowrap lg:flex-row lg:justify-center">
+                        {engagementModels.map((model, i) => (
                             <div
-                                key={i}
-                                className={`flex grid-cols-2 flex-col items-start gap-4 border-b-1 border-white/10 py-4 last:border-b-0 md:grid md:items-center ${i === 0 ? "" : "border-t-1"}`}
+                                key={model.sys.id}
+                                className={`border-primary flex min-h-[652px] ${i === 1 ? "bg-primary/40" : ""} min-w-[100%] flex-col gap-8 rounded-4xl border px-4 py-24 md:min-w-[60%] lg:w-[363px] lg:min-w-0`}
                             >
-                                <h3 className="text-md font-bold">{service.label}</h3>
-                                <p className="max-w-[35ch] text-white/50 lg:max-w-full">
-                                    {service.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="min-h-max w-full overflow-x-hidden border-y-1 border-white/10 py-16">
-                <div className="mx-auto flex min-h-max w-9/10 flex-col justify-between gap-8 md:gap-32">
-                    <div className="flex w-full grid-cols-2 flex-col justify-between gap-4 md:flex-row lg:grid">
-                        <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                            <StaggerText>Policy Advisory </StaggerText>
-                        </h2>
-                        <div className="flex flex-col gap-4">
-                            <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                                <StaggerText>
-                                    Intelligence and analysis that puts you ahead of the political
-                                    and regulatory forces shaping your operations.
-                                </StaggerText>
-                            </h2>
-                            <p className="leading-reg text-base text-white/70 md:w-full md:max-w-[45ch] lg:max-w-[50ch]">
-                                From deep policy research to pre-crisis risk assessment — we
-                                give you the clarity to act before events unfold, not after.
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        {PolicyArray.map((service, i) => (
-                            <div
-                                key={i}
-                                className={`flex grid-cols-2 flex-col items-start gap-4 border-b-1 border-white/10 py-4 last:border-b-0 md:grid md:items-center ${i === 0 ? "" : "border-t-1"}`}
-                            >
-                                <h3 className="text-md font-bold">{service.label}</h3>
-                                <p className="max-w-[35ch] text-white/50 lg:max-w-full">
-                                    {service.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="min-h-max w-full overflow-x-hidden border-y-1 border-white/10 py-16">
-                <div className="mx-auto flex min-h-max w-9/10 flex-col justify-between gap-8 md:gap-32">
-                    <div className="flex w-full grid-cols-2 flex-col justify-between gap-4 md:flex-row lg:grid">
-                        <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                            <StaggerText>Campaign Management</StaggerText>
-                        </h2>
-                        <div className="flex flex-col gap-4">
-                            <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                                <StaggerText>
-                                    Strategy and intelligence built to win.
-                                </StaggerText>
-                            </h2>
-                            <p className="leading-reg text-base text-white/70 md:w-full md:max-w-[45ch] lg:max-w-[50ch]">
-                                From core message to GOTV — we build the political,
-                                communications and digital infrastructure that turns campaigning
-                                into votes.
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        {CampaignArray.map((service, i) => (
-                            <div
-                                key={i}
-                                className={`flex grid-cols-2 flex-col items-start gap-4 border-b-1 border-white/10 py-4 last:border-b-0 md:grid md:items-center ${i === 0 ? "" : "border-t-1"}`}
-                            >
-                                <h3 className="text-md font-bold">{service.label}</h3>
-                                <p className="max-w-[35ch] text-white/50 lg:max-w-full">
-                                    {service.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="min-h-max w-full overflow-x-hidden border-y-1 border-white/10 py-16">
-                <div className="mx-auto flex min-h-max w-9/10 flex-col justify-between gap-8 md:gap-32">
-                    <div className="flex w-full grid-cols-2 flex-col justify-between gap-4 md:flex-row lg:grid">
-                        <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                            <StaggerText>Government Advisory</StaggerText>
-                        </h2>
-                        <div className="flex flex-col gap-4">
-                            <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                                <StaggerText>
-                                    We work for governments — not for the investors or companies
-                                    seeking access to them.
-                                </StaggerText>
-                            </h2>
-                            <p className="leading-reg text-base text-white/70 md:w-full md:max-w-[45ch] lg:max-w-[50ch]">
-                                We help governments build the structures, narrative and
-                                international positioning they need to attract serious
-                                investment on fair terms.
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        {GovernmentArray.map((service, i) => (
-                            <div
-                                key={i}
-                                className={`flex grid-cols-2 flex-col items-start gap-4 border-b-1 border-white/10 py-4 last:border-b-0 md:grid md:items-center ${i === 0 ? "" : "border-t-1"}`}
-                            >
-                                <h3 className="text-md font-bold">{service.label}</h3>
-                                <p className="max-w-[35ch] text-white/50 lg:max-w-full">
-                                    {service.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="min-h-max w-full overflow-x-hidden border-y-1 border-white/10 py-16">
-                <div className="mx-auto flex min-h-max w-9/10 flex-col justify-between gap-8 md:gap-32">
-                    <div className="flex w-full grid-cols-2 flex-col justify-between gap-4 md:flex-row lg:grid">
-                        <h2 className="tracking-xtra text-[2rem] leading-tight font-bold">
-                            <StaggerText>Enagagement Models</StaggerText>
-                        </h2>
-                        <div>
-                            <p className="leading-reg text-base text-white/70 md:w-full md:max-w-[45ch] lg:max-w-[50ch]">
-                                We work with clients across four flexible models, from ongoing
-                                strategic partnerships to focused project engagements
-                            </p>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="no-scrollbar flex-wrap md:flex-nowrap flex gap-8 overflow-x-auto border-white/10 py-4 md:flex lg:flex lg:flex-row lg:justify-center">
-                            {engagementModels.map((model,i) => {
-                               const features = model.fields.features
-                                console.log(i)
-                                return (  <div key={i} className={`border-primary flex min-h-[652px] ${ i === 1 ? "bg-primary" : " "}  min-w-[100%] flex-col gap-8 rounded-4xl border px-4 py-24 md:min-w-[60%] lg:w-[363px] lg:min-w-0`}>
-
                                 <div className="flex flex-col gap-8 px-4">
                                     <h3 className="text-md font-bold">{model.fields.tier}</h3>
-                                    <p className="max-w-[35ch] text-white/75 lg:max-w-full">
-                                {model.fields.description}
-                                    </p>
+                                    <p className="max-w-[35ch] text-white/75 lg:max-w-full">{model.fields.description}</p>
                                 </div>
-
                                 <div className="flex flex-col px-4">
-                                    {features.map((feature:any ,i:any)=>{
-                                        return(
-                                        <span key={i} className="border-b-1 border-white/10 py-2 text-white/50">
-                                        {feature}
-                                    </span>)
-                                    })}
+                                    {model.fields.features.map((feature: string, j: number) => (
+                                        <span key={j} className="border-b-1 border-white/10 py-2 text-white/50">
+                                            {feature}
+                                        </span>
+                                    ))}
                                     <span className="mt-8">
-                                        <Button isLight={true} cta="Get Started" href="/contact" />
+                                        <TierButton isLight={i === 1 ? false : true} cta="Get Started" href="/contact" />
                                     </span>
                                 </div>
-                            </div>)
-                            })}
-                          
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Project Packages */}
+            <section className="min-h-max w-full overflow-x-hidden border-y-1 border-white/10 py-16">
+                <div className="mx-auto flex min-h-max w-9/10 flex-col justify-between gap-8 md:gap-8">
+                    <h2 className="tracking-xtra text-lg font-bold md:text-xl">
+                        <StaggerText>Project Packages</StaggerText>
+                    </h2>
+                    <motion.div
+                        initial="initial"
+                        viewport={{ once: true }}
+                        whileInView="inView"
+                        className="grid-cols-2 divide-x divide-y divide-white/[0.04] md:grid"
+                    >
+                        {ProjectPackages.map((pack: any, i: any) => (
+                            <motion.div
+                                key={pack.pack}
+                                className="bg-background px-4 py-12 duration-200 md:px-4 md:py-24"
+                                variants={{ initial: { opacity: 0 }, inView: { opacity: 1 } }}
+                                transition={{ delay: i * 0.25, ease: "easeInOut" }}
+                            >
+                                <h3 className="text-md text-primary font-bold mb-1">{pack.tier}</h3>
+                                <h4 className="text-md font-bold tracking-tight mb-4">{pack.pack}</h4>
+                                <p className="max-w-[40ch] leading-relaxed text-white/50">{pack.description}</p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* CTA */}
+            <section className="min-h-max w-full overflow-x-hidden border-y-1 border-white/10 py-16">
+                <div className="mx-auto min-h-max w-9/10">
+                    <div className="flex flex-col justify-between gap-8 md:flex-row md:gap-0">
+                        <div className="flex w-full flex-col justify-between md:w-[60%]">
+                            <h2 className="tracking-xtra text-xl leading-tight font-bold md:text-3xl">
+                                <StaggerText>Ready to navigate with confidence?</StaggerText>
+                            </h2>
+                            <p className="leading-reg max-w-[25ch] text-base text-white/70 md:max-w-[45ch] lg:max-w-[50ch]">
+                                Get in touch and tell us what you're working on.
+                            </p>
+                        </div>
+                        <div className="self-start md:self-center">
+                            <Button href="/contact" isLight={true} cta="Get in touch" />
+                            <span className="text-sm text-white/50">info@riserootsgroup.com</span>
                         </div>
                     </div>
                 </div>
             </section>
+
             <Foot />
         </>
-    );
+    )
 }
