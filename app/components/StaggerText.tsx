@@ -12,7 +12,7 @@ export default function StaggerText({
       className={className}
       initial="initial"
       whileInView="animate"
-      viewport={{ once: true }}
+      viewport={{ once: true, root: undefined }}
     >
       {children.split(" ").map((word, i) => (
         <span key={i} className="inline-block overflow-hidden">

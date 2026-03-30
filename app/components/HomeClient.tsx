@@ -174,7 +174,7 @@ export default function HomeClient({
           </div>
           <motion.div
             initial="initial"
-            viewport={{ once: true, amount: "some" }}
+            viewport={{ once: true, amount: "some", root: undefined }}
             whileInView="inView"
             className="grid-cols-2 divide-x divide-white/[0.04] md:grid md:divide-y"
           >

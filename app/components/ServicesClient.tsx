@@ -266,7 +266,7 @@ export default function ServicesClient({ engagementModels }: { engagementModels:
                     </h2>
                     <motion.div
                         initial="initial"
-                        viewport={{ once: true }}
+                        viewport={{ once: true, root: undefined }}
                         whileInView="inView"
                         className="grid-cols-2 divide-x divide-y divide-white/[0.04] md:grid"
                     >
