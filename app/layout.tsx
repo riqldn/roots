@@ -28,13 +28,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${instrument.variable} h-full antialiased`}>
-      <ReactLenis root>
 
 
-        <body className="flex min-h-full flex-col">
+
+      <body className="flex min-h-full flex-col">
+        <ReactLenis root>
           {children}
-        </body>
-      </ReactLenis>
-    </html>
+        </ReactLenis>
+      </body>
+
+    </html >
   );
 }

@@ -21,7 +21,6 @@ export async function POST(req: Request) {
       to: [
     'kamara.abu@riserootsgroup.com',
     'info@riserootsgroup.com',
-    'tariqsadu@hotmail.co.uk'
   ],
       replyTo: email,
       subject: `New enquiry from ${name} — ${organisation || 'No organisation'}`,
