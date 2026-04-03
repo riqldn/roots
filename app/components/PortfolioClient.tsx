@@ -36,7 +36,7 @@ export default function PortfolioClient({ works }: { works: any[] }) {
                         <span className="text-primary font-medium">
                             <StaggerText>Portfolio</StaggerText>
                         </span>
-                        <h1 className="tracking-xtra text-lg font-bold md:text-xl lg:text-3xl">
+                        <h1 className="tracking-xtra leading-tight text-lg font-bold md:text-xl lg:text-3xl">
                             <StaggerText>A snapshot of our intelligence in action.</StaggerText>
                         </h1>
                     </div>
