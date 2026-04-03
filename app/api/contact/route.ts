@@ -17,8 +17,8 @@ export async function POST(req: Request) {
     }
 
     await resend.emails.send({
-      from: 'Roots Contact Form <onboarding@resend.dev>', // change once domain verified
-      to: 'info@riserootsgroup.com',
+      from: 'Roots Contact Form <noreply@riserootsgroup.com>', // change once domain verified
+      to: 'kamara.abu@riserootsgroup.com',
       replyTo: email,
       subject: `New enquiry from ${name} — ${organisation || 'No organisation'}`,
       html: `
