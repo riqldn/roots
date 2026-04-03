@@ -55,11 +55,6 @@ const PolicyArray = [
             "Strategic mapping of sector frameworks, regulatory regimes and the stakeholders who hold influence.",
     },
     {
-        label: "Executive Visibility & LinkedIn Strategy",
-        description:
-            "Structured thought-leadership support — LinkedIn positioning and policy-informed commentary.",
-    },
-    {
         label: "Political & Regulatory Risk Analysis",
         description:
             "Clear evaluation of political stability, compliance exposure, regulatory shifts and potential disruptions.",

@@ -58,7 +58,7 @@ export default function HomeClient({
     {
       icon: "/binoculars.svg",
       title: "Foresights",
-      desc: "Our clients don&apos;t hire us to explain yesterday. They hire us to anticipate tomorrow. That is the only metric that matters.",
+      desc: "Our clients don't hire us to explain yesterday. They hire us to anticipate tomorrow. That is the only metric that matters.",
     },
   ];
 

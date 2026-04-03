@@ -189,9 +189,7 @@ export default function About() {
             >
               <h3 className="text-md text-primary mb-8 font-bold">Mission</h3>
               <p className="max-w-[40ch] leading-relaxed text-white/50">
-                To become the leading political intelligence firm shaping
-                strategy and narrative around West African geopolitics and
-                economic development
+                We deliver the clarity you need to make confident decisions in complex markets — combining deep advisory expertise, rigorous research and strategic foresight to help you navigate the political, regulatory and sector-specific forces shaping West Africa.
               </p>
             </motion.div>
           </motion.div>
@@ -279,13 +277,9 @@ export default function About() {
               </div>
 
               <p className="max-w-[40ch] leading-relaxed text-white/50">
-                Sukai is Co-Founder of Roots Policy Consulting, leading on
-                political ethics, international law and sovereign governance
-                across the UK-West Africa corridor. <br />
+             Sukai is Co-Founder of Roots Policy Consulting, leading on political ethics, international law and sovereign governance across the UK-West Africa corridor. <br />
                 <br />
-                Her work interrogates the power dynamics underpinning
-                investment, development and regulatory systems — with a
-                particular focus on neo-colonial structures in global markets.
+               Holding a Master of Arts in International Studies and Diplomacy from the School of Oriental and African Studies (SOAS), University of London, her work interrogates the power dynamics underpinning investment, development and regulatory systems, with a particular focus on neo-colonial structures in global markets.
               </p>
             </motion.div>
 
@@ -310,7 +304,7 @@ export default function About() {
               </div>
 
               <p className="max-w-[40ch] leading-relaxed text-white/50">
-                Abu Bakarr Kamara is the Founder of Rise & Roots Group — built
+                Abu Bakarr Kamara is the Founder of Rise & Roots Group, built
                 on one conviction: that West Africa's story must be told
                 differently, and its political and economic future must be
                 shaped from within.
