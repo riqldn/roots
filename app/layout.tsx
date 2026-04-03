@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import LenisProvider from "./components/lenis-provider";
+import ReactLenis from "lenis/react";
 
 const instrument = localFont({
   src: "../fonts/InstrumentSans.woff2",
@@ -27,9 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${instrument.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">
-        <LenisProvider>{children}</LenisProvider>
-      </body>
+      <ReactLenis root>
+
+
+        <body className="flex min-h-full flex-col">
+          {children}
+        </body>
+      </ReactLenis>
     </html>
   );
 }

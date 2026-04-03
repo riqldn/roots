@@ -9,6 +9,7 @@ import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "motion/react";
 import Foot from "./Foot";
+import Link from "next/link";
 
 export default function HomeClient({
   sectors,
@@ -258,55 +259,57 @@ export default function HomeClient({
               const categories = work.fields.category || [];
 
               return (
-                <div key={i}>
-                  <div
-                    key={work.sys.id}
-                    className="group relative h-[350px] cursor-pointer overflow-hidden rounded-lg"
-                  >
-                    {/* Background image */}
-                    {imageUrl ? (
-                      <Image
-                        src={imageUrl}
-                        alt={work.fields.title}
-                        fill
-                        className="aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className="absolute top-0 bg-gradient-to-br from-[#1a1420] to-[#2d1f3d]" />
-                    )}
+                <Link key={i * 100} href={`portfolio/${work.fields.slug}`}>
+                  <div key={i}>
+                    <div
+                      key={work.sys.id}
+                      className="group relative h-[350px] cursor-pointer overflow-hidden rounded-lg"
+                    >
+                      {/* Background image */}
+                      {imageUrl ? (
+                        <Image
+                          src={imageUrl}
+                          alt={work.fields.title}
+                          fill
+                          className="aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="absolute top-0 bg-gradient-to-br from-[#1a1420] to-[#2d1f3d]" />
+                      )}
 
-                    {/* Dark gradient overlay — stronger at bottom */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                      {/* Dark gradient overlay — stronger at bottom */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                    {/* Content sits on top of overlay */}
+                      {/* Content sits on top of overlay */}
+                    </div>
+                    <div key={work.sys.id * 5} className="relative py-4">
+                      {/* Category pills */}
+                      {Array.isArray(categories) && categories.length > 0 && (
+                        <div className="mb-3 flex flex-wrap gap-2">
+                          {categories.map((cat: any) => {
+                            const label = cat.fields?.category; // ← was cat.fields?.name, should be cat.fields?.category
+
+                            if (!label) return null;
+
+                            return (
+                              <span
+                                key={cat.sys.id}
+                                className="text-primary rounded-xl bg-[#120C36] px-2 py-1 text-[12px]"
+                              >
+                                {label}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {/* Title */}
+                      <h3 className="text-[16px] leading-snug font-semibold text-white">
+                        {work.fields.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div key={work.sys.id * 5} className="relative py-4">
-                    {/* Category pills */}
-                    {Array.isArray(categories) && categories.length > 0 && (
-                      <div className="mb-3 flex flex-wrap gap-2">
-                        {categories.map((cat: any) => {
-                          const label = cat.fields?.category; // ← was cat.fields?.name, should be cat.fields?.category
-
-                          if (!label) return null;
-
-                          return (
-                            <span
-                              key={cat.sys.id}
-                              className="text-primary rounded-xl bg-[#120C36] px-2 py-1 text-[12px]"
-                            >
-                              {label}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    )}
-
-                    {/* Title */}
-                    <h3 className="text-[16px] leading-snug font-semibold text-white">
-                      {work.fields.title}
-                    </h3>
-                  </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -324,9 +327,9 @@ export default function HomeClient({
               <div className="flex flex-col items-start gap-8 md:flex-row">
                 <span className="text-smd self-start font-bold">Countries</span>
                 <div className="mt-2 flex flex-row flex-wrap items-center gap-1 gap-y-2">
-                  {countries.map((country: any) => {
+                  {countries.map((country: any, i: number) => {
                     return (
-                      <span
+                      <span key={i}
                         className={
                           country.fields.highlight
                             ? "text-primary border-primary mr-2 flex max-h-max max-w-max items-center justify-center rounded-3xl border-1 px-3 font-medium text-nowrap"
@@ -343,9 +346,9 @@ export default function HomeClient({
               <div className="flex flex-col items-start gap-8 md:flex-row">
                 <span className="text-smd self-start font-bold">Sectors</span>
                 <div className="mt-2 flex flex-row flex-wrap items-center gap-1 gap-y-2">
-                  {sectors.map((sector: any) => {
+                  {sectors.map((sector: any, i : number) => {
                     return (
-                      <span
+                      <span key={i}
                         className={
                           sector.fields.highlight
                             ? "text-primary border-primary mr-2 flex max-h-max max-w-max items-center justify-center rounded-3xl border-1 px-3 font-medium text-nowrap"

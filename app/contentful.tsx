@@ -35,3 +35,29 @@ export async function getEngagements() {
   });
   return res.items;
 }
+
+
+export async function getWorkBySlug(slug: string): Promise<any> {
+  const res = await client.getEntries({
+    content_type: 'works',
+    'fields.slug': slug,
+    include: 2,
+  })
+  return res.items[0] || null
+}
+
+export async function getAllWorkSlugs(): Promise<string[]> {
+  const res = await client.getEntries({
+    content_type: 'works',
+    select: ['fields.slug'],
+  })
+  return res.items.map((item: any) => item.fields.slug as string)
+}
+
+export async function getAllWorks(): Promise<any[]> {
+  const res = await client.getEntries({
+    content_type: 'works',
+    include: 2,
+  })
+  return res.items
+}
