@@ -29,7 +29,7 @@ const StrategicArray = [
     {
         label: "Executive Visibility & LinkedIn Strategy",
         description:
-            "Structured thought-leadership support — LinkedIn positioning and policy-informed commentary.",
+            "Structured thought-leadership support, LinkedIn positioning and policy-informed commentary.",
     },
     {
         label: "Issues & Reputation Management",
@@ -167,7 +167,7 @@ const services = [
     {
         id: "government",
         label: "Government Advisory",
-        tagline: "We work for governments — not for the investors or companies seeking access to them.",
+        tagline: "We work with governments advising on policy, partnerships, that shape how the private sector engages with them",
         description: "We help governments build the structures, narrative and international positioning they need to attract serious investment on fair terms.",
         items: GovernmentArray,
     },

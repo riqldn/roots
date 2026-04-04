@@ -61,3 +61,35 @@ export async function getAllWorks(): Promise<any[]> {
   })
   return res.items
 }
+
+export async function getAllReports(): Promise<any[]> {
+  const res = await client.getEntries({
+    content_type: 'reports',
+
+  })
+  return res.items
+}
+export async function getReports() {
+  const res = await client.getEntries({
+    content_type: "reports",
+    "fields.featured": true, // also change 'yes' to true — it's a Boolean field in your schema
+
+  });
+  return res.items;
+}
+
+export async function getReportBySlug(slug: string): Promise<any> {
+  const res = await client.getEntries({
+    content_type: 'reports',
+    'fields.slug': slug,
+   
+  })
+  return res.items[0] || null
+}
+export async function getAllReportSlugs(): Promise<string[]> {
+  const res = await client.getEntries({
+    content_type: 'reports',
+    select: ['fields.slug'],
+  })
+  return res.items.map((item: any) => item.fields.slug as string)
+}

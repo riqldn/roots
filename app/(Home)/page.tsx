@@ -1,16 +1,17 @@
 // app/page.tsx — no "use client" at the top
 import NavBar from "../components/NavBar";
 import HomeClient from "../components/HomeClient";
-import { getWorks, getCountries, getSectors } from "../contentful";
+import { getWorks, getCountries, getSectors, getReports } from "../contentful";
 
 export default async function Home() {
   const works = await getWorks();
   const countries = await getCountries();
   const sectors = await getSectors();
+  const reports = await getReports()
   return (
     <>
       <NavBar />
-      <HomeClient sectors={sectors} works={works} countries={countries} />
+      <HomeClient reports={reports} sectors={sectors} works={works} countries={countries} />
     </>
   );
 }

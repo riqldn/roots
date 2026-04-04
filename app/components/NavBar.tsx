@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Approach", href: "/approach" },
+  { label: "Reports", href: "/reports" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
 ];
@@ -92,10 +93,11 @@ export default function NavBar() {
     <>
       <nav className="z-50 flex min-h-10 w-full items-center justify-center">
         <div className="mx-auto flex w-9/10 items-center justify-between">
-          <Image src="/logo.svg" alt="Logo" width={100} height={60} priority />
-
+          <Link href="/">
+            <Image src="/logo.svg" alt="Logo" width={100} height={60} priority />
+          </Link>
           <div className="hidden items-center gap-4 font-medium lg:flex">
-            {NAV_LINKS.slice(0, 5).map(({ label, href }) => (
+            {NAV_LINKS.slice(0, 6).map(({ label, href }) => (
               <Link key={label} href={href}>
                 <StaggerLink>{label}</StaggerLink>
               </Link>
