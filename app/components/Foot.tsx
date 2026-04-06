@@ -5,7 +5,7 @@ export default function Foot() {
   const FOOTER_LINKS = [
     { label: "Home", href: "/" },
     { label: "Portfolio", href: "/portfolio" },
-    { label: "Reports", href: "/reports" },
+    { label: "Insights", href: "/insights" },
     { label: "Services", href: "/services" },
     { label: "Contact", href: "/contact" },
   ];

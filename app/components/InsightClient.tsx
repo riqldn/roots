@@ -10,7 +10,7 @@ export default function ReportClient({ reports }: { reports: any[] }) {
             <div className="mx-auto min-h-max w-9/10">
                 <div className="mb-12 flex w-full flex-col justify-between md:flex-row">
                     <h2 className="tracking-xtra text-[2rem] font-bold md:w-1/2 md:text-xl">
-                        <StaggerText>Reports</StaggerText>
+                        <StaggerText>Insights</StaggerText>
                     </h2>
                 </div>
 
@@ -21,7 +21,7 @@ export default function ReportClient({ reports }: { reports: any[] }) {
                             : null
 
                         return (
-                            <Link key={report.sys.id} href={`/reports/${report.fields.slug}`}>
+                            <Link key={report.sys.id} href={`/insights/${report.fields.slug}`}>
                                 <div className="group relative cursor-pointer overflow-hidden rounded-lg">
                                     {imageUrl ? (
                                         <Image

@@ -261,7 +261,7 @@ export default function HomeClient({
   
 
               return (
-                <Link key={i * 100} href={`portfolio/${report.fields.slug}`}>
+                <Link key={i * 100} href={`insights/${report.fields.slug}`}>
                   <div key={i}>
                     <div
                       key={report.sys.id}
@@ -275,6 +275,7 @@ export default function HomeClient({
                           width={1414}
                           height={2000}
                           className=" transition-transform duration-500 group-hover:scale-105"
+                           sizes="(max-width: 768px) 100vw, (min-width: 768px) 33vw, 33vw"
                         />
                       ) : (
                         <div className="absolute top-0 bg-gradient-to-br from-[#1a1420] to-[#2d1f3d]" />
@@ -332,6 +333,7 @@ export default function HomeClient({
                           alt={work.fields.title}
                           fill
                           className="aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (min-width: 768px) 33vw, 33vw"
                         />
                       ) : (
                         <div className="absolute top-0 bg-gradient-to-br from-[#1a1420] to-[#2d1f3d]" />
