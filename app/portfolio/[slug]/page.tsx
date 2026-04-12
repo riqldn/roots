@@ -5,6 +5,8 @@ import NavBar from '@/app/components/NavBar'
 import Foot from '@/app/components/Foot'
 import RichText from '@/app/components/RichText'
 
+export const revalidate = 60
+
 export async function generateStaticParams() {
     const slugs = await getAllWorkSlugs()
     return slugs.map((slug: string) => ({ slug }))

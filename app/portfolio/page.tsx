@@ -3,6 +3,8 @@ import NavBar from '@/app/components/NavBar'
 import Foot from '@/app/components/Foot'
 import PortfolioClient from '@/app/components/PortfolioClient'
 
+export const revalidate = 60
+
 export default async function PortfolioPage() {
   const works = await getAllWorks()
   return (
