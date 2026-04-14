@@ -3,6 +3,8 @@ import NavBar from '@/app/components/NavBar'
 import Foot from '@/app/components/Foot'
 import InsightClient from '@/app/components/InsightClient'
 
+export const revalidate = 60
+
 export default async function PortfolioPage() {
   const reports = await getAllReports()
   return (
